@@ -73,35 +73,62 @@ This is where you define what a class or id means visually.
 ### Basic appearance
 
 ```css
-.watered { /* you can name this anything that makes sense */
+.example { /* you can name this anything that makes sense */
+
+  /* Colors */
   color: #2a6f4f;
   background-color: #eaf6ee;
-  opacity: 1;
+
+  /* Text */
+  font-family: 'Arial', sans-serif;
+  font-size: 16px; /* px or em */
+  letter-spacing: 2px;
+  text-transform: uppercase; /* or lowercase */
+
+  /* Borders */
+  border-radius: 50%;      /* rounded corners */
+  border: 1px solid #eeff44; /*adds size, style, and color */
+
+  /* Ways of toggling visibility */
+  opacity: 0;  /* still takes up space, value 0 to 1 */
+  visibility: hidden; /* invisible, still in layout */
+  display: none; /* gone from layout */
+  /* display: block */
 }
 ```
 
 ### Size and shape
 
 ```css
-.grown {
-  transform: scale(1.3);   /* bigger */
+.example {
+  transform: scale(1.3);   /* bigger; <1 would shrink, e.g. 0.6 */
   width: 200px;             /* size */
-  border-radius: 50%;      /* rounded corners */
+  height: auto;
+
+  /* Moving things */
+  transform: translate(20px, -10px); /* (x, y) */
+  transform: rotate(5deg);
+  transform: translate(15px, 10px) rotate(-120deg); /* both */
 }
 ```
 
-### Hover-only effects
+### Other appearance properties
+
+You can search for more CSS properties [here](https://developer.mozilla.org/en-US/docs/Web/CSS).
 
 ```css
-.tool:hover {
-  cursor: grab;
-  transform: scale(1.1);
+.example {
+  filter: blur(10px);
+  filter: grayscale (0.8) brightness(0.7);
+  z-index: -1; /* think of these as layers */
+  box-shadow: 0 0 24px #7fff7f; /* glow or shadow behind div or image */
+  text-shadow: 0 0 12px #ff00ff; /*glow or shadow behind text */
 }
 ```
 
 ### Motion, transition, animation:
 
-We'll skip this for this workshop, but you can check out [W3schools](https://www.w3schools.com/css/css3_animations.asp) for more detailed explanations of animations.
+We'll skip this, but you can check out [W3schools](https://www.w3schools.com/css/css3_animations.asp) for more detailed explanations of animations.
 
 ---
 
