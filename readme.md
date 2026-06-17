@@ -1,92 +1,73 @@
-# Tending the Webpage — Cheatsheet
-
-A few tools for tending. You won't need much more than this.
+# Tending the Webpage: CSS + JS Cheatsheet!
 
 ---
 
-## JavaScript — making your tool *do* something
+## HTML - creating content inside your plot
 
-### The core mechanism: classes
-
-Your tool's job is usually to add, remove, or toggle a class on an element. That class is where the CSS styling lives.
-
-```javascript
-element.classList.add("watered")     // add a class
-element.classList.remove("dormant")  // remove a class
-element.classList.toggle("blooming") // on if off, off if on
+```HTML
+<div></div>       <!-- a generic box / container -->
+<p></p>           <!-- a paragraph of text -->
+<span></span>     <!-- a small inline bit of text -->
+<img src="">      <!-- an image (no closing tag) -->
+<a href=""></a>   <!-- a link -->
+<h1></h1>         <!-- a big heading (h2, h3 … get smaller) -->
+<ul></ul>         <!-- a bulleted list -->
+<li></li>         <!-- one item inside a list -->
 ```
 
-Use this for almost everything. If your tool changes how something *looks* or *behaves*, this is probably the only JS you need — the real work happens in CSS.
+*Class and id* go on the opening tag so CSS and JS can find and style them:
 
-### Creating things
-
-If your tool plants or adds something new to the page:
-
-```javascript
-const newPlant = document.createElement("div")  // make a new element
-newPlant.classList.add("seedling")
-target.appendChild(newPlant)                     // place it inside another element
+```HTML
+<div class="plot" id="plot-001"></div>
+<img class="seedling" src="sprout.png">
+<p class="note">something growing here</p>
 ```
 
-### Changing content
+### Nesting
 
-If your tool changes the words or images inside something:
+Make sure your opening + closing tags match and that things are **nesting** properly inside each other, like boxes inside boxes.
 
-```javascript
-element.textContent = "a new thought"     // plain text only, safest option
-element.innerHTML = "<em>a new thought</em>"  // allows HTML tags inside
+Only close a tag once everything inside is also closed. Read this from the outside in: *a garden contains a plot which contains a thought above a flower*.
+
+```HTML
+<div class="garden">
+  <div class="plot">
+    <p>a thought</p>
+    <img src="flower.png">
+  </div>
+</div>
 ```
 
-### Direct style changes
-
-Usually classes are cleaner, but sometimes you want to set one specific style directly:
-
-```javascript
-element.style.opacity = "0.5"
-element.style.transform = "scale(1.2)"
+**Good rules of thumb:**
+- Write your opening and closing tags first, *then* put everything inside.
+- Don't cross tags like this:
+```HTML
+<div><p></div></p>
 ```
-
-### Changing attributes
-
-Useful for swapping an image, or changing a link:
-
-```javascript
-element.setAttribute("src", "new-image.png")
-element.setAttribute("href", "https://example.com")
-```
-
-### Wiring up your tool
-
-This is what makes your tool actually trigger when someone uses it:
-
-```javascript
-toolElement.addEventListener("click", () => {
-  // what happens when someone clicks your tool
-})
-
-toolElement.addEventListener("mouseover", () => {
-  // what happens when someone hovers over your tool
-})
-```
-
-### Finding elements
-
-```javascript
-document.getElementById("plot-001")          // find one specific element
-document.querySelector(".plot")               // find the first match
-document.querySelectorAll(".plot")             // find all matches
-```
+- Remember, some tags don't have closing ones like *img* and *br*.
 
 ---
 
 ## CSS — what your class actually *looks* like
 
-Once your JS adds a class, this is where you define what that class means visually.
+This is where you define what a class means visually so you can add it with JS.
+
+### Class vs ID
+
+```css
+.class-name { /* resuable, MANY elements can share e.g. .watered */ 
+
+}
+
+#id-name { /* names ONE specific element, e.g. #plot-1 */ 
+
+}
+```
 
 ### Basic appearance
 
 ```css
-.watered {
+.watered { /* you can name this anything that makes sense */
   color: #2a6f4f;
   background-color: #eaf6ee;
   opacity: 1;
@@ -98,8 +79,8 @@ Once your JS adds a class, this is where you define what that class means visual
 ```css
 .grown {
   transform: scale(1.3);   /* bigger */
-  width: 200px;
-  border-radius: 50%;      /* circular */
+  width: 200px;             /* size */
+  border-radius: 50%;      /* rounded corners */
 }
 ```
 
@@ -115,6 +96,8 @@ Without this, changes snap instantly. With it, they ease in:
 
 ### Animation (for ongoing or looping effects)
 
+Check out [W3schools](https://www.w3schools.com/css/css3_animations.asp) for more detailed explanations of animations.
+
 ```css
 .perennial {
   animation: sway 3s ease-in-out infinite;
@@ -129,6 +112,8 @@ Without this, changes snap instantly. With it, they ease in:
 
 ### Filters (good for decay, weather, atmosphere)
 
+Here's a list of other [filters](https://www.w3schools.com/css/css3_image_filters.asp) to consider.
+
 ```css
 .wilted   { filter: grayscale(0.8) brightness(0.7); }
 .frosted  { filter: blur(2px) brightness(1.2); }
@@ -142,22 +127,9 @@ Without this, changes snap instantly. With it, they ease in:
   z-index: 10;       /* higher = sits on top */
   position: relative; /* needed for z-index to work */
 }
-```
 
-### Adding content without touching the HTML
-
-Useful for a small note, label, or symbol that appears only when a class is active:
-
-```css
-.annotated::after {
-  content: " 🌱";
-}
-
-.labeled::before {
-  content: "tended by you";
-  display: block;
-  font-size: 0.8em;
-  opacity: 0.6;
+.stable {
+  position: fixed; /* element stays in place, does not move */
 }
 ```
 
@@ -168,6 +140,69 @@ Useful for a small note, label, or symbol that appears only when a class is acti
   cursor: grab;
   transform: scale(1.1);
 }
+```
+
+---
+
+## JavaScript — making your tool *do* something 
+
+### The core mechanism: classes
+
+The **simplest thing** for your tool to do is to add, remove, or toggle a *class* on an element. That class contains the CSS styling.
+
+```javascript
+element.classList.add("watered")     // add a class
+element.classList.remove("dormant")  // remove a class
+element.classList.toggle("blooming") // on if off, off if on
+```
+
+If your tool changes how something *looks* or *behaves*, this is probably the only JS you need; you would define the look/behavior *in CSS*.
+
+### Creating + Adding
+
+If your tool adds something new to the page:
+
+```javascript
+const newPlant = document.createElement("div")  // make a new element
+newPlant.classList.add("seedling") // "seedling" would be a CSS class
+target.appendChild(newPlant) // place it inside another element (target)
+```
+
+### Changing content
+
+If your tool changes the words inside something:
+
+```javascript
+element.textContent = "a new thought"     // changes the text
+element.innerHTML = "<em>a new thought</em>"  // allows HTML tags inside
+```
+
+### Direct style changes
+
+Usually CSS classes are cleaner, but sometimes you want to set one specific style directly:
+
+```javascript
+element.style.opacity = "0.5"
+element.style.transform = "scale(1.2)"
+element.style.fontSize = "12px"
+element.style.color = "#ff00ff"
+```
+
+### Changing attributes
+
+Useful for swapping an image, or changing a link:
+
+```javascript
+element.setAttribute("src", "new-image.png")
+element.setAttribute("href", "https://example.com")
+```
+
+### Finding elements
+
+```javascript
+document.getElementById("plot-001")   // find one specific element
+document.querySelector(".plot")       // find the first match
+document.querySelectorAll(".plot")    // find all matches
 ```
 
 ---
