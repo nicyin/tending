@@ -149,6 +149,7 @@ The **simplest thing** for your tool to do is to add, remove, or toggle a *class
 // doing something to the whole plot
 plot.classList.add("watered")     // add a class
 plot.classList.remove("dormant")  // remove a class
+
 plot.classList.toggle("blooming") // on if off, off if on
 
 //doing something to an element inside the plot
@@ -157,6 +158,8 @@ plot.querySelectorAll(".flower").forEach(el =>
 ```
 
 If your tool changes how something *looks* or *behaves*, this is probably the only JS you need; you would define the look/behavior *in CSS*.
+
+🚨 **More difficulty:** you can also take a stab at creating states using [if/else statements](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else).
 
 ### Creating + adding elements (HTML)
 
