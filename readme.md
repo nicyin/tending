@@ -1,4 +1,6 @@
-# Tending the Webpage: CSS + JS Cheatsheet!
+# Tending the Webpage: Coding Cheatsheet!
+
+This cheatsheet contains relevant HTML/CSS/JS information that we'll use for this specific workshop. There is a lot more to explore in coding for the web and you can find more resources at the bottom.
 
 ---
 
@@ -11,14 +13,12 @@
 <img src="">      <!-- an image (no closing tag) -->
 <a href=""></a>   <!-- a link -->
 <h1></h1>         <!-- a big heading (h2, h3 … get smaller) -->
-<ul></ul>         <!-- a bulleted list -->
-<li></li>         <!-- one item inside a list -->
 ```
 
-*Class and id* go on the opening tag so CSS and JS can find and style them. *Class* is reusable and many elements can share it (.flower). *Id* names one specific element (#poem).
+**Class and id** go on the opening tag so CSS and JS can find and style them. **Class** is reusable and many elements can share it (.flower). **ID** names one specific element (#poem). An element can have both.
 
 ```HTML
-<div class="plot" id="plot-001"></div>
+<div class="plot" id="plot-1"></div>
 <img class="seedling" src="sprout.png">
 <p class="note">something growing here</p>
 ```
@@ -27,7 +27,7 @@
 
 Make sure your opening + closing tags match and that things are **nesting** properly inside each other, like boxes inside boxes.
 
-Only close a tag once everything inside is also closed. Read this from the outside in: *a garden contains a plot which contains a thought above a flower*.
+Only close a tag once everything inside is also closed:
 
 ```HTML
 <div class="garden">
@@ -37,6 +37,8 @@ Only close a tag once everything inside is also closed. Read this from the outsi
   </div>
 </div>
 ```
+
+Read this from the outside in: *a garden contains a plot which contains a thought above a flower*.
 
 **Good rules of thumb:**
 - Write your opening and closing tags first, *then* put everything inside.
@@ -48,18 +50,22 @@ Only close a tag once everything inside is also closed. Read this from the outsi
 
 ---
 
-## CSS — what your class actually *looks* like
+## CSS — what your elements actually *look* like
 
-This is where you define what a class means visually so you can add it with JS.
+This is where you define what a class or id means visually.
 
-### Class vs ID
+### Class vs id
 
 ```css
-.class-name { /* resuable, MANY elements can share. any styles here will affect ALL instances with the same name */
+.class-name { 
+
+  /* resuable, MANY elements can share. any styles here will affect ALL instances with the same name */
 
 }
 
-#id-name { /* names ONE specific element, e.g. #plot-1 */ 
+#id-name { 
+  
+  /* names ONE specific element, e.g. #plot-1 */
 
 }
 ```
@@ -84,32 +90,6 @@ This is where you define what a class means visually so you can add it with JS.
 }
 ```
 
-### Motion and transition
-
-Without this, changes snap instantly. With it, they ease in:
-
-```css
-.plot {
-  transition: all 0.6s ease;
-}
-```
-
-### Animation (for ongoing or looping effects)
-
-Check out [W3schools](https://www.w3schools.com/css/css3_animations.asp) for more detailed explanations of animations.
-
-```css
-.perennial {
-  animation: sway 3s ease-in-out infinite;
-}
-
-@keyframes sway {
-  0%   { transform: rotate(0deg); }
-  50%  { transform: rotate(5deg); }
-  100% { transform: rotate(0deg); }
-}
-```
-
 ### Hover-only effects
 
 ```css
@@ -119,11 +99,15 @@ Check out [W3schools](https://www.w3schools.com/css/css3_animations.asp) for mor
 }
 ```
 
+### Motion, transition, animation:
+
+We'll skip this for this workshop, but you can check out [W3schools](https://www.w3schools.com/css/css3_animations.asp) for more detailed explanations of animations.
+
 ---
 
 ## JavaScript — making your tool *do* something 
 
-### Finding elements
+### The "sentence structure"
 
 Every JS action follows the same shape:
 
@@ -135,7 +119,9 @@ element.action("something")
 - **action**: what you're doing (changing color, adding text, etc.)
 - **something**: the value (class name, text string, color hex code, etc.)
 
-**Class vs ID in JS:**
+### Selecting elements
+
+**Class vs id in JS:**
 - In querySelector, use a **dot** for class and **hash** for id: ".flower" vs "#poem"
 - In classList.add / remove / toggle, use the name *without the dot*.
 
@@ -155,7 +141,7 @@ plot.querySelectorAll(".flower").forEach(el => el.classList.add("blooming"))
 document.querySelectorAll(".flower").forEach(el => el.classList.add("blooming"))
 ```
 
-### The core mechanism: classes
+### Changing styles (CSS)
 
 The **simplest thing** for your tool to do is to add, remove, or toggle a *class* on an element. That class contains the CSS styling.
 
@@ -172,7 +158,7 @@ plot.querySelectorAll(".flower").forEach(el =>
 
 If your tool changes how something *looks* or *behaves*, this is probably the only JS you need; you would define the look/behavior *in CSS*.
 
-### Creating + Adding
+### Creating + adding elements (HTML)
 
 You can use your tool to add something new to the plot via HTML:
 
@@ -186,7 +172,7 @@ plot.innerHTML += '<div class="flower"><img src="flower.png"></div>'
 
 *Note: += keeps what's already in there and adds more, whereas = just replaces*
 
-### Changing content
+### Changing content (HTML)
 
 If your tool changes elements (e.g. words) inside the plot:
 
@@ -201,7 +187,7 @@ poem.innerHTML = "<em>a new thought</em>"  // allows HTML tags inside
 plot.querySelector("#poem").textContent = "a new thought"
 ```
 
-### Direct style changes
+### Direct style changes (CSS)
 
 Usually CSS classes are cleaner, but sometimes you want to set one specific style directly:
 
@@ -217,7 +203,7 @@ plot.querySelector(".image").style.opacity = "0.5"
 ```
 *Do you see what's being replaced here?*
 
-### Changing attributes
+### Changing attributes (HTML)
 
 Useful for swapping an image, or changing a link:
 
