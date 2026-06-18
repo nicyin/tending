@@ -227,6 +227,7 @@ plot.style.opacity = "0.5"
 plot.style.transform = "scale(1.2)"
 plot.style.fontSize = "12px"
 plot.style.color = "#ff00ff"
+plot.style.backgroundColor = "#135130" // CSS property names with hyphens become camelCase in JS: background-color → backgroundColor
 
 // an element inside the plot
 plot.querySelector(".image").style.opacity = "0.5"
