@@ -78,6 +78,10 @@ This is where you define what a class or id means visually.
   /* Colors */
   color: #2a6f4f;
   background-color: #eaf6ee;
+  background-image: url('YOUR_URL.JPG'); /* if you want to use an image, URL or file name */
+  background-size: auto; /* cover, contain */
+  background-repeat: no-repeat; /* or repeat */
+  background-position: center;
 
   /* Text */
   font-family: 'Arial', sans-serif;
